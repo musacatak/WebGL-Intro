@@ -1,0 +1,106 @@
+<html>
+
+<head><title>Ahmet Musa Çatak / 18290088 Midterm Homework</title></head>
+
+<body>
+   <h1>Keyboard Controls</h1>
+   <u1>
+      <li>Object Status
+         <ul></li>
+            <li>Rotation
+               <ul>
+                  <li>Change Rotation     : R</li>
+                  <li>Stop/Start Rotation : Ctrl</li>
+               </ul>
+            </li>
+            <li>Location
+               <ul>
+                        <li>Shift Right : D</li>
+                        <li>Shift Left  : A</li>
+                        <li>Shift Up    : W</li>
+                        <li>Shift Down  : S</li>
+               </ul>
+            </li>
+            <li>
+               Scaling
+               <ul>
+                  <li>Increase scale : +</li>
+                  <li>Decrease scale : -</li>
+               </ul>
+            </li>
+
+         </ul>
+      
+   </u1>
+   <canvas id="glcanvas" width="512" height="512"></canvas>
+   <p></p>
+   <button id="DirectionButton">
+      Change Rotation Direction
+   </button>
+
+   <div>
+      Rotation Delay <p1>0.0</p1> <input id="slide" type="range" min="0" max="100" step="10" value="50" />
+      100
+   </div>
+
+   <div>
+      Red  <p2>0.0</p2><input id="slideRed" type="range" min="0" max="1.0" step="0.1" value="0.5" />
+      1.0
+   </div>
+
+   <div>
+      Green <p3>0.0</p3><input id="slideGreen" type="range" min="0" max="1.0" step="0.1" value="0.5" />
+      1.0
+   </div>
+
+   <div>
+      Blue <p4>0.0</p4><input id="slideBlue" type="range" min="0" max="1.0" step="0.1" value="0.5" />
+      1.0
+   </div>
+
+   <div>
+      Colors Saturation <p5>0.0</p5> <input id="slideSaturation" type="range" min="0" max="1.0" step="0.1" value="0.5" />
+      1.0
+   </div>
+   <h2>Ahmet Musa Çatak / 18290088</h2>
+
+</body>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+   attribute vec4 vPosition;
+   uniform float theta;
+   uniform float xAxis;
+   uniform float yAxis;
+   uniform float scale;
+   void main() {
+      
+      gl_Position.x = (cos(theta) * vPosition.x - sin(theta) * vPosition.y)*scale ;
+      gl_Position.y = (sin(theta) * vPosition.x + cos(theta) * vPosition.y)*scale ;
+      gl_Position.z = 0.0;
+      gl_Position.w = 1.0;
+
+
+      
+      gl_Position.x += xAxis;
+      gl_Position.y += yAxis;
+
+   }
+   
+ </script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    uniform vec4 fColor;
+    void main() {
+       gl_FragColor = fColor;
+    }
+ </script>
+ <link rel="stylesheet" href="18290088.css">
+<script src="initShaders.js"></script>
+<script src="MV.js"></script>
+<script src="18290088.js"></script>
+<script src="webgl-utils.js"></script>
+
+
+
+</html>
